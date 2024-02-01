@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card mt-4" style="margin-left: 6%; margin-right: 20%">
+                    <div class="card-body" style="margin-right: -900px">
+                        {% if request.user.profile %}
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="col-3" style="margin-bottom: 10px;">
+                                    <label for="{{ form.first_name.id_for_label }}">Имя</label>
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="col-3" style="margin-bottom: 10px;">
+                                    <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                                    {{ form.last_name }}
+                                </div>
+                                <div class="col-3" style="margin-bottom: 10px;">
+                                    <label for="{{ form.about.id_for_label }}">О себе</label>
+                                    {{ form.about }}
+                                </div>
+                                <div class="col-3">
+                                    <label for="{{ form.photo.id_for_label }}"></label>
+                                    {{ form.photo }}
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Сохранить"
+                                       style="margin-left: 100px; margin-top: 20px;">
+                            </form>
+                        {% else %}
+                            lox
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

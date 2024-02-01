@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card mt-4" style="margin-left: 62px; margin-right: 12%">
+                    <div class="card-body" style="margin-right: -900px">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <label for="{{ form.first_name.id_for_label }}"></label>
+                            <div class="col-3">
+                                {{ form.first_name }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.last_name.id_for_label }}"></label>
+                                {{ form.last_name }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.work_name.id_for_label }}"></label>
+                                {{ form.work_name }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.about.id_for_label }}"></label>
+                                {{ form.about }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.telephone.id_for_label }}"></label>
+                                {{ form.telephone }}
+                                {{ form.telephone.errors }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.city.id_for_label }}"></label>
+                                {{ form.city }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.citizenship.id_for_label }}"></label>
+                                {{ form.citizenship }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.salary.id_for_label }}"></label>
+                                {{ form.salary }}
+                                {{ form.salary.errors }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.gender.id_for_label }}"></label>
+                                {{ form.gender }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.experience.id_for_label }}"></label>
+                                {{ form.experience }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.photo.id_for_label }}">Фото</label>
+                                {{ form.photo }}
+                            </div>
+
+                            <input type="submit" class="btn btn-primary" value="Сохранить"
+                                   style="margin-left: 95px; margin-top: 10px;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

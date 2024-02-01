@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-4" style="margin-left: 62px; margin-right: 78px;">
+                    <div class="card-body">
+                        <form method="post" action="{% url "resume:delete" resume.pk %}">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                Are you sure you want to delete this resume?
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.name.id_for_label }}">Work name:</label>
+                                {{ resume.work_name }}
+                            </div>
+
+                            <input type="submit" class="btn btn-primary" value="Delete">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

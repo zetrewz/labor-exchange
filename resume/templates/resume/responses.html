@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin-left: 112px; margin-top: 30px; margin-right: 130px;">
+        {% for response in responses %}
+            <div class="card" style="margin: 13px">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ response.vacancy.get_absolute_url }}">{{ response.vacancy.name }}</a>
+                    </h5>
+                    <p class="card-text"><strong>{{ response.vacancy.company_name }}</strong></p>
+                    <p class="card-text"><strong>{{ response.vacancy.salary }} RUB</strong></p>
+                    <p class="card-text"><strong>{{ response.vacancy.city }}</strong></p>
+                    <button type="button" class="btn btn-light apply-button" data-pk="{{ response.vacancy.pk }}">
+                        Отменить
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

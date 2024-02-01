@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-4" style="margin-left: 62px; margin-right: 78px;">
+                    <div class="card-body">
+                        <form method="post" action="{% url "vacancy:delete" vacancy.pk %}">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                Вы уверены, что хотите удалить данную вакансию?
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.name.id_for_label }}">Вакансия:</label>
+                                <a href="{% url 'vacancy:detail' vacancy.pk %}">{{ vacancy.name }}</a>
+                            </div>
+
+                            <input type="submit" class="btn btn-primary" value="Удалить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

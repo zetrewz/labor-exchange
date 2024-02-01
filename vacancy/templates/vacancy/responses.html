@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin-left: 112px; margin-top: 30px; margin-right: 630px;">
+        {% for i in responses %}
+            {% with i.resume as resume %}
+                <div class="card" style="margin-left: 32px; margin-right: 32px; margin-bottom: 15px;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ resume.get_absolute_url }}">{{ resume.work_name }}</a>
+                        </h5>
+                        <p class="card-text"><strong></strong>{{ resume.first_name }} {{ resume.last_name }}</p>
+                        <p class="card-text"><strong></strong>+{{ resume.telephone }}</p>
+                        <p class="card-text"><strong></strong>{{ resume.city }}</p>
+                        <p class="card-text"><strong></strong>{{ resume.salary }} RUB на руки</p>
+                        {% if resume.photo.url is not None %}
+                            <a href="{{ resume.photo.url }}"><img src="{{ resume.photo.url }}" alt="" style="position: absolute;width: 23%;height: 35%;object-fit: cover;margin-top: -45%; margin-left: 70%"/></a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endwith %}
+        {% endfor %}
+    </div>
+{% endblock %}

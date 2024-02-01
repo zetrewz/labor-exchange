@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5" style="margin-top: 6%; margin-left: 4%;">
+                <div class="card mt-4" style="margin-left: 85%; margin-right: -50%">
+                    <div class="card-body" style="margin-right: -270%">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="col-3" style="margin-bottom: -1.3%">
+                                <label for="{{ form.email.id_for_label }}"></label>
+                                {{ form.email }}
+                               {{ form.email.errors }}
+                            </div>
+
+                                <ul>
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+
+                            <div class="col-3">
+                                <label for="{{ form.password1.id_for_label }}"></label>
+                                {{ form.password1 }}
+                                {{ form.password1.errors }}
+                            </div>
+
+                            <div class="col-3">
+                                <label for="{{ form.password2.id_for_label }}"></label>
+                                {{ form.password2 }}
+                                {{ form.password2.errors }}
+                            </div>
+
+                            <p><strong style="margin-top: 0.3%"></strong></p>
+                            <span style="margin-left: 0.35%;">Кто ты, воин?</span>
+                            <div class="col-3">
+                                <label for="{{ form.user_type.id_for_label }}"></label>
+                                {{ form.user_type }}
+                            </div>
+                            <p><strong style="margin-bottom: 1%"></strong></p>
+
+                            <a href="{% url 'account:login' %}"><span>Есть аккаунт?</span></a>
+                            <input type="submit" class="btn btn-primary" value="Register" style="margin-left: 0.5%">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Chat room{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-4" style="margin-left: 63px; margin-right: 78px;">
+                    <div class="card-body">
+                        {% for application in applications %}
+                            {% if request.user.profile %}
+                                <p>{{ application.resume.first_name }} {{ application.resume.last_name }}
+                                    <br><a href="{% url 'chat:chat_room' application.id %}">Перейти в чат</a>
+                                </p>
+                            {% else %}
+                                <p>{{ application.vacancy.name }}
+                                    <br><a href="{% url 'chat:chat_room' application.id %}">Перейти в чат</a>
+                                </p>
+                            {% endif %}
+                        {% empty %}
+                            You are have no any applications.
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

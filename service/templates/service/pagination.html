@@ -1,0 +1,28 @@
+<div style="margin-left: 440px; margin-bottom: 25px;">
+    <span>
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}{% if query %}&query={{ query }}{% endif %}"><-</a>
+    {% endif %}
+        {% if page.number <= 6 %}
+            {% for num in page.paginator.page_range|slice:":10" %}
+                {% if num == page.number %}
+                    <span>{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}{% if query %}&query={{ query }}{% endif %}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <a href="?page=1{% if query %}&query={{ query }}{% endif %}">1...</a>
+            {% for num in page.paginator.page_range|slice:"6:16" %}
+                {% if num == page.number %}
+                    <span>{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}{% if query %}&query={{ query }}{% endif %}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </span>
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}{% if query %}&query={{ query }}{% endif %}">-></a>
+    {% endif %}
+</div>

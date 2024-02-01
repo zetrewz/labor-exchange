@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card mt-4" style="margin-left: 62px; margin-right: 78px;">
+                    <div class="card-body" style="margin-right: -820px">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <label for="{{ form.company_name.id_for_label }}"></label>
+                            <div class="col-3">
+                                {{ form.name }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.company_name.id_for_label }}"></label>
+                                {{ form.company_name }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.about.id_for_label }}"></label>
+                                {{ form.about }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.responsibilities.id_for_label }}"></label>
+                                {{ form.responsibilities }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.requirements.id_for_label }}"></label>
+                                {{ form.requirements }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.conditions.id_for_label }}"></label>
+                                {{ form.conditions }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.city.id_for_label }}"></label>
+                                {{ form.city }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="col-3">
+                                <label for="{{ form.salary.id_for_label }}"></label>
+                                {{ form.salary }}
+                                {{ form.salary.errors }}
+                            </div>
+
+                            <p><strong style="margin-top: 1px"></strong></p>
+                            <div class="mb-3">
+                                <label for="{{ form.active.id_for_label }}">Опубликовать</label>
+                                {{ form.active }}
+                            </div>
+
+                            <input type="submit" class="btn btn-primary" value="Создать вакансию"
+                                   style="margin-left: 60px;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

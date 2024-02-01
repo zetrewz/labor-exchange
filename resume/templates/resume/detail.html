@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Resume{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-4" style="margin-left: 62px; margin-right: 600px;">
+                    <div class="card-body">
+                        <span style="font-size: 23px;"><strong>{{ resume.work_name }}</strong></span>
+                        <p class="card-text" style="margin-left: 250px">
+{#                            <span><strong>{{ resume.salary }} RUB </strong>на руки</span></p>#}
+                        <p class="card-text"><strong></strong>{{ resume.first_name }} {{ resume.last_name }}</p>
+                        <p class="card-text"><strong></strong>+{{ resume.telephone }}</p>
+                        <p class="card-text"><strong></strong>Гражданство {{ resume.citizenship }}</p>
+                        <p class="card-text"><strong></strong>Проживаю в {{ resume.city }}</p>
+                        <p class="card-text"><strong></strong>{{ resume.experience }}</p>
+                        <p class="card-text"><strong></strong>{{ resume.about }}</p>
+                        {% if resume.photo.url is not None %}
+                            <a href="{{ resume.photo.url }}"><img src="{{ resume.photo.url }}" alt="" style="position: absolute;width: 22%;height: 32%;object-fit: cover;margin-top: -64%; margin-left: 71%"/></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

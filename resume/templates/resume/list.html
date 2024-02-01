@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Resumes{% endblock %}
+{% block content %}
+    <div style="margin-left: 110px; margin-top: 30px; margin-right: 60%;">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ resume.get_absolute_url }}">{{ resume.work_name }}</a>
+                </h5>
+                <p class="card-text"><strong></strong>{{ resume.first_name }} {{ resume.last_name }}</p>
+                <p class="card-text"><strong></strong>+{{ resume.telephone }}</p>
+                <p class="card-text"><strong></strong>{{ resume.city }}</p>
+                <p class="card-text"><strong></strong>{{ resume.salary }} RUB на руки</p>
+                <a href="{% url "resume:update" resume.pk %}">Изменить</a>
+                <a href="{% url "resume:delete" resume.pk %}">Удалить</a>
+{#                <img src="{{ resume.photo.url }}" alt="" style="width: 10%; margin-left: 15%; margin-top: -32%;"/>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}

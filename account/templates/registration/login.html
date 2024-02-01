@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5" style="margin-top: 13%; margin-left: 4%">
+                <div class="card mt-4" style="margin-left: 85%; margin-right: -50%">
+                    <div class="card-body" style="margin-right: -270%">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="col-3">
+                                <label for="{{ form.email.id_for_label }}"></label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="col-3">
+                                <label for="{{ form.password.id_for_label }}"></label>
+                                {{ form.password }}
+                            </div>
+                            <p><strong style="margin-bottom: 1%"></strong></p>
+
+
+
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %}
+                                            class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            <a href="{% url 'account:register' %}"><span
+                                    style="font-size: 100%;">Нет аккаунта?</span></a>
+                            <input type="submit" class="btn btn-primary" value="Login" style="margin-left: 0.5%;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

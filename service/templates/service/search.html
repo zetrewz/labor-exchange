@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin-left: 112px; margin-top: 30px; margin-right: 130px;">
+        {% if query %}
+            {% for i in results %}
+                {% if request.user.profile %}
+                    <div class="card" style="margin-left: 35%; margin-right: 10%; margin-bottom: 1.5%;">
+                        <div class="card-body" style="margin-bottom: -35px;">
+                        <span style="margin-left: 60%;"><strong>{{ i.salary }} RUB </strong>на руки</span>
+                            <h5 class="card-title" style="margin-top: -5%;">
+                                <a href="{{ i.get_absolute_url }}">{{ i.work_name }}</a>
+                            </h5>
+                            <p class="card-text"><strong></strong>{{ i.first_name }} {{ i.last_name }}</p>
+                            <p class="card-text"><strong></strong>+{{ i.telephone }}</p>
+                            <p class="card-text"><strong></strong>{{ i.city }}</p>
+{#                            <p class="card-text"><strong></strong>{{ i.salary }} RUB на руки</p>#}
+                            {% if request.user in i.in_favorites.all %}
+                                <a class="resume-favorites-button btn btn-danger" data-pk="{{ i.pk }}"
+                                   style="margin-left: 93%; margin-top: -60%">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                </a>
+                            {% else %}
+                                <a class="resume-favorites-button btn btn-light" data-pk="{{ i.pk }}"
+                                   style="margin-left: 93%; margin-top: -60%">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% elif request.user.resume %}
+                    <div class="card" style="margin-left: 35%; margin-right: 8%; margin-bottom: 1.5%">
+                        <div class="card-body" style="margin-bottom: -20px;">
+                            <h5 class="card-title">
+                                <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+                            </h5>
+                            <p class="card-text"><strong>{{ i.company_name }}</strong></p>
+                            <p class="card-text"><strong>{{ i.salary }} RUB</strong></p>
+                            <p class="card-text"><strong>{{ i.city }}</strong></p>
+                            {% if i.pk in vacancy_pks %}
+                                <button type="button" class="btn btn-light apply-button" data-pk="{{ i.pk }}">Отменить
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn btn-success apply-button" data-pk="{{ i.pk }}">Откликнуться
+                                </button>
+                            {% endif %}
+                            {% if request.user in i.in_favorites.all %}
+                                <a class="vacancy-favorites-button btn btn-danger" data-pk="{{ i.pk }}"
+                                   style="margin-left: 93%; margin-top: -72%;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                </a>
+                            {% else %}
+                                <a class="vacancy-favorites-button btn btn-light" data-pk="{{ i.pk }}"
+                                   style="margin-left: 93%; margin-top: -72%;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card" style="margin-left: 13px; margin-right: 13px; margin-bottom: 15px">
+                        <div class="card-body" style="margin-bottom: -20px;">
+                            <h5 class="card-title">
+                                <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+                            </h5>
+                            <p class="card-text"><strong>{{ i.company_name }}</strong></p>
+                            <p class="card-text"><strong>{{ i.salary }} RUB</strong></p>
+                            <p class="card-text"><strong>{{ i.city }}</strong></p>
+                            <button type="button" class="btn btn-success" data-pk="{{ i.pk }}">У вас нет резюме
+                            </button>
+                            {% if request.user in i.in_favorites.all %}
+                                <a class="vacancy-favorites-button btn btn-danger" data-pk="{{ i.pk }}"
+                                   style="margin-left: 93%; margin-top: -72%;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                </a>
+                            {% else %}
+                                <a class="vacancy-favorites-button btn btn-light" data-pk="{{ i.pk }}"
+                                   style="margin-left: 93%; margin-top: -72%;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <div class="container" style="margin-top: -30px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mt-4" style="margin-left: -10px; margin-right: 800px;">
+                                <div class="card-body" style="">
+                                    No results
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% include "service/pagination.html" with page=results %}
+        {% else %}
+            <div class="container" style="margin-top: -30px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mt-4" style="margin-left: -10px; margin-right: 800px;">
+                            <div class="card-body">
+                                Empty query
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

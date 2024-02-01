@@ -1,0 +1,6 @@
+{% autoescape off %}
+
+Hi, {{ user.get_username }}
+http://{{ domain }}{% url 'account:verify_email' uidb64=uid token=token %}
+
+{% endautoescape %}
